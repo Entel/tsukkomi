@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+
+	<div id="input_area">
+		<form id="content" action="/" method="post">
+			<input id="content_submit_area" class="text_area" placeholder="less than 140 words" type="text" name="content">
+			<input id="submit_button" type="submit" value="Submit">
+		</form>
+	</div>
+	
+	<div id="show_area">
+		<ul>
+		{% for item in items %}
+			<li>{{ item }}</li>
+		{% end %}
+		<ul>
+		<p id="show"></p>
+	</div>
+
+</body>
+
+</html>

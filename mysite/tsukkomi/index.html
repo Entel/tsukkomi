@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+	<title>Tsukkomi</title>
+	<meta charset="utf-8" />
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<head>
+
+<body>
+
+<form id='submit_area' action="/tsukkomi/submit/" method="post">
+	 {% csrf_token %}
+	<input type="input" name="content">
+	<input type="submit" value="Submit">
+</form>
+
+Hello, world.
+{% if content_list %}
+	<ul>
+	{% for item in content_list %}
+		<li class="list_item">
+			<p id="content_{{item.id}}" class="main_text">	{{ item.text }}</p>
+			<p class="date"> {{ item.time }}</p>
+			<p class="ip">{{ item.ip }} </p>
+			<a id="comment_{{ item.id }}" class="subtitle" href="#"> comment</a>
+			<div id="comment_area_{{ item.id }}" style="display:none">
+					<input type="input" name="comment">
+					<button>Submit</button>
+				<ul>
+				{% for comment in comment_list %}
+					<li>{{ comment.text }}</li>
+				{% endfor %}
+				<ul>
+			</div>
+		</li>
+	{% endfor %}
+	</ul>
+{% endif %}
+	<script src="{% static 'js/comment.js' %}"></script>
+</body>
+</html>
